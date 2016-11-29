@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Transforms\UserTransforms;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -26,8 +27,27 @@ class AuthController extends Controller
       $response = fractal()
         ->item($users)
         ->transformWith(new UserTransforms)
+        ->addMeta([
+          'token' => bcrypt($request->email),
+        ])
         ->toArray();
 
       return response()->json($response, 201);
+    }
+
+    public function login(Request $request, User $user)
+    {
+      if(!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        return response()->json(['error' => 'email dan kata password salah.'], 401);
+      }
+
+      $user = $user->find(Auth::user()->id);
+      return fractal()
+        ->item($user)
+        ->transformWith(new UserTransforms)
+        ->addMeta([
+          'token' => $user->api_token,
+        ])
+        ->toArray();
     }
 }
