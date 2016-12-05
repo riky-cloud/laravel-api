@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tbl_posting;
 use Auth;
 use App\Transforms\PostTransforms;
+use App\Transforms\PostingTransforms;
 
 class PostController extends Controller
 {
@@ -46,5 +48,19 @@ class PostController extends Controller
       $post->delete();
 
       return response()->json(['message' => 'post terhapus']);
+    }
+
+    public function posting(Tbl_posting $post)
+    {
+      $post = $post->all();
+
+      $response = fractal()
+        ->collection($post)
+        ->transformWith(new PostingTransforms)
+        ->toArray();
+
+      return response()->json($response, 201);
+
+
     }
 }

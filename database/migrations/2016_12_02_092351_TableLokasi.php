@@ -1,11 +1,10 @@
-b
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TablePosting extends Migration
+class TableLokasi extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +13,17 @@ class TablePosting extends Migration
      */
     public function up()
     {
-      if (Schema::hasTable('tbl_posting') == false)
+      if (Schema::hasTable('tbl_lokasi') == false)
       {
-        Schema::create('tbl_posting', function (Blueprint $table) {
+        Schema::create('tbl_lokasi', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('id_user');
-            $table->string('title');
-            $table->text('alamat');
+            $table->integer('id_posting');
+            $table->string('lat');
+            $table->string('long');
             $table->timestamps();
         });
       }
+
     }
 
     /**
@@ -33,9 +33,9 @@ class TablePosting extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('tbl_posting');
-        // Schema::table('tbl_posting', function (Blueprint $table) {
-        //     $table->text('alamat2')->after('alamat');
+        // Schema::dropIfExists('tbl_lokasi');
+        // Schema::table('tbl_lokasi', function(Blueprint $table) {
+        //     $table->renameColumn('id_user', 'id_posting');
         // });
     }
 }

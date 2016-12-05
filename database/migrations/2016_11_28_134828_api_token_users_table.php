@@ -13,9 +13,12 @@ class ApiTokenUsersTable extends Migration
      */
     public function up()
     {
+      if (Schema::hasTable('users') == false)
+      {
         Schema::table('users', function(Blueprint $table){
           $table->string('api_token')->after('email');
         });
+      }
     }
 
     /**
@@ -25,8 +28,8 @@ class ApiTokenUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table){
-          $table->dropColumn('api_token');
-        });
+        // Schema::table('users', function(Blueprint $table){
+        //   $table->dropColumn('api_token');
+        // });
     }
 }
