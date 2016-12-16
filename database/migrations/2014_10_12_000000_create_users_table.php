@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
       {
           Schema::create('users', function (Blueprint $table) {
               $table->increments('id');
+              $table->integer('level');
+              $table->integer('id_identitas');
               $table->string('name');
               $table->string('email')->unique();
               $table->string('password');
@@ -35,5 +37,9 @@ class CreateUsersTable extends Migration
     public function down()
     {
         // Schema::drop('users');
+        // Schema::table('users', function(Blueprint $table) {
+        //     $table->integer('level')->after('id');
+        //     $table->integer('id_identitas')->after('id');
+        // });
     }
 }

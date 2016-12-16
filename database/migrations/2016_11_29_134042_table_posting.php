@@ -19,6 +19,7 @@ class TablePosting extends Migration
         Schema::create('tbl_posting', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('id_user');
+            $table->string('kode_jenis');
             $table->string('title');
             $table->text('alamat');
             $table->timestamps();
@@ -35,7 +36,7 @@ class TablePosting extends Migration
     {
         // Schema::dropIfExists('tbl_posting');
         // Schema::table('tbl_posting', function (Blueprint $table) {
-        //     $table->text('alamat2')->after('alamat');
+        //     $table->text('kode_jenis')->after('id_user');
         // });
     }
 }

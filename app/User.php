@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
+use App\Identitas;
 
 class User extends Authenticatable
 {
@@ -31,6 +32,11 @@ class User extends Authenticatable
     public function posts()
     {
       return $this->hasMany(Post::class);
+    }
+
+    public function identitas()
+    {
+      return $this->hasMany('App\Identitas', 'id_user', 'id');
     }
 
     public function ownsPost(Post $post)

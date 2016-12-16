@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Transforms\UserTransforms;
+use App\Transformers\UserTransforms;
 use Auth;
 
 class UserController extends Controller
@@ -37,7 +37,7 @@ class UserController extends Controller
       return fractal()
         ->item($user)
         ->transformWith(new UserTransforms)
-        ->includePosts()
+        ->includeidentitas()
         ->toArray();
     }
 }

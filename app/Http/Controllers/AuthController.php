@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Transforms\UserTransforms;
+use App\Transformers\UserTransforms;
 use Auth;
 
 class AuthController extends Controller
@@ -45,6 +45,7 @@ class AuthController extends Controller
       return fractal()
         ->item($user)
         ->transformWith(new UserTransforms)
+        ->includeidentitas()
         ->addMeta([
           'token' => $user->api_token,
         ])

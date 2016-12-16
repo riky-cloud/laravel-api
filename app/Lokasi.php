@@ -3,14 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
-class Tbl_posting extends Model
+class Lokasi extends Model
 {
     protected $fillable = [
-      'id_user', 'title', 'alamat',
+      'id_posting', 'lat', 'long',
     ];
-    protected $table = "tbl_posting";
+    protected $table = "tbl_lokasi";
 
     public function scopeLatestFirst($query)
     {

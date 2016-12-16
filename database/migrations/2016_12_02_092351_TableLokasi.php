@@ -35,7 +35,7 @@ class TableLokasi extends Migration
     {
         // Schema::dropIfExists('tbl_lokasi');
         // Schema::table('tbl_lokasi', function(Blueprint $table) {
-        //     $table->renameColumn('id_user', 'id_posting');
+        //     $table->renameColumn('id_posting', 'posting_id');
         // });
     }
 }
